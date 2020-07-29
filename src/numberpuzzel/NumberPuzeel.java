@@ -17,7 +17,7 @@ public class NumberPuzeel extends javax.swing.JFrame {
     /**
      * Creates new form NumberPuzeel
      */
-    JLabel[] jl;
+    JLabel[][] jl;
     JLabel[][] jlarray;
     int x,y;
     int x1,y1;
@@ -30,32 +30,40 @@ public class NumberPuzeel extends javax.swing.JFrame {
     }
     public void showNumberOnBox()
     {
-        JLabel[] jl={l0,l1,l2,l3,l4,l5,l6,l7,l8};
+        JLabel[][] jl={{l0,l1,l2},{l3,l4,l5},{l6,l7,l8}};
         int[] number={1,2,3,4,5,6,7,8};
         int n=8;//we have total 16boxes so we take 9
         int randomNumber;
-        for(int i=0;i < 9 ; i++)
+        for(int i=0;i < 3 ; i++)
         {
-            randomNumber=(int)(Math.random() * n);
-            if(randomNumber <= n && i != 8)
-            {
-                jl[i].setText(""+number[randomNumber]);
-                number[randomNumber]=number[n-1];
-            }
-            else if(i==8)
-            {
-                jl[i].setText(" ");
-                x=y=x1=y1=2;
-            }
+           for(int j=0;j<3;j++)
+           {
+               randomNumber=(int)(Math.random()*n);
+               if(randomNumber < n-1 && n!=0)
+               {
+                   jl[i][j].setText(""+number[randomNumber]);
+                   number[randomNumber]=number[n-1];
+               }
+               else if(n==0)
+               {
+                   jl[i][j].setText(" ");
+                   x=x1=y=y1=i;
+               }
+               else
+                   jl[i][j].setText(""+number[randomNumber]);
+               n--;
+               
+           }
+           
                 
-            n--;
+         
         }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        p1 = new javax.swing.JPanel();
         l2 = new javax.swing.JLabel();
         l0 = new javax.swing.JLabel();
         l1 = new javax.swing.JLabel();
@@ -68,14 +76,16 @@ public class NumberPuzeel extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        moveCount = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(350, 450));
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        p1.setBackground(new java.awt.Color(255, 255, 255));
+        p1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         l2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         l2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -118,56 +128,56 @@ public class NumberPuzeel extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout p1Layout = new javax.swing.GroupLayout(p1);
+        p1.setLayout(p1Layout);
+        p1Layout.setHorizontalGroup(
+            p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(p1Layout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(p1Layout.createSequentialGroup()
                         .addComponent(l0, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(l1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(p1Layout.createSequentialGroup()
                         .addComponent(l6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(l7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(p1Layout.createSequentialGroup()
                         .addComponent(l3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(l4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(l2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(l5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(l8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        p1Layout.setVerticalGroup(
+            p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(p1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(l0, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(l1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(l3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(l4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(l7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(l8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(19, 75, 310, 236);
+        getContentPane().add(p1);
+        p1.setBounds(20, 120, 310, 236);
         getContentPane().add(jSeparator1);
-        jSeparator1.setBounds(10, 59, 322, 10);
+        jSeparator1.setBounds(10, 40, 322, 2);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Number Puzzel");
@@ -183,70 +193,71 @@ public class NumberPuzeel extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(20, 320, 160, 40);
+        jButton1.setBounds(210, 370, 130, 40);
+
+        moveCount.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        moveCount.setText("300");
+        getContentPane().add(moveCount);
+        moveCount.setBounds(110, 70, 90, 29);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setText("Moves::");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(20, 70, 90, 29);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void l8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_l8KeyPressed
-        int keycode=evt.getKeyCode();
-        JLabel[] jl={l0,l1,l2,l3,l4,l5,l6,l7,l8};
-        JLabel[][] jlarray=new JLabel[3][3];
-        int t=0;
-        for(int i=0;i < 3;i++){
-          for(int j=0; j < 3;j++)
-          {
-               jlarray[i][j]=jl[t];
-               t++;
-          }
-        }
-        switch(keycode)
+             int keycode=evt.getKeyCode();
+            JLabel[][] jl={{l0,l1,l2},{l3,l4,l5},{l6,l7,l8}};
+            int count=Integer.parseInt(moveCount.getText());
+        
+      switch(keycode)
         {
             case KeyEvent.VK_UP:
                 y=y1;
                 if(x != 0)
                 {
-                 String temp=jlarray[x][y].getText();
-                 jlarray[x][y].setText(jlarray[x-1][y].getText());
-                 jlarray[x-1][y].setText(temp);
+                 moveCount.setText(""+(count-1));
+                 String temp=jl[x][y].getText();
+                 jl[x][y].setText(jl[x-1][y].getText());
+                 jl[x-1][y].setText(temp);
                  x--;
                 }
-                checkvalueLimit(jlarray,jl);
                 break;
             case KeyEvent.VK_DOWN:
                 y=y1;
                 if(x != 2)
                 {
-                    String temp=jlarray[x][y].getText();
-                    jlarray[x][y].setText(jlarray[x+1][y].getText());
-                    jlarray[x+1][y].setText(temp);
+                    moveCount.setText(""+(count-1));
+                    String temp=jl[x][y].getText();
+                    jl[x][y].setText(jl[x+1][y].getText());
+                    jl[x+1][y].setText(temp);
                     x++;
                 }
-                checkvalueLimit(jlarray,jl);
                 break;
             case KeyEvent.VK_LEFT:
                 x1=x;
                  if(y1 != 0)
                  {
-                     String temp=jlarray[x1][y1].getText();
-                     jlarray[x1][y1].setText(jlarray[x1][y1-1].getText());
-                     jlarray[x1][y1-1].setText(temp);
+                     moveCount.setText(""+(count-1));
+                     String temp=jl[x1][y1].getText();
+                     jl[x1][y1].setText(jl[x1][y1-1].getText());
+                     jl[x1][y1-1].setText(temp);
                      y1--;
                  }
-                 checkvalueLimit(jlarray,jl);
                  break;
             case KeyEvent.VK_RIGHT:
                 x1=x;
                 if(y1 != 2)
                  {
-                     
-                     String temp=jlarray[x1][y1].getText();
-                     jlarray[x1][y1].setText(jlarray[x1][y1+1].getText());
-                     jlarray[x1][y1+1].setText(temp);
+                     moveCount.setText(""+(count-1));
+                     String temp=jl[x1][y1].getText();
+                     jl[x1][y1].setText(jl[x1][y1+1].getText());
+                     jl[x1][y1+1].setText(temp);
                      y1++;
                  }
-                 checkvalueLimit(jlarray,jl);
-                 break;
         }
         
     }//GEN-LAST:event_l8KeyPressed
@@ -256,17 +267,7 @@ public class NumberPuzeel extends javax.swing.JFrame {
         l8.setFocusable(true);
         l8.requestFocusInWindow();
     }//GEN-LAST:event_jButton1ActionPerformed
-   public void checkvalueLimit(JLabel[][] jlarray,JLabel[] jl)
-   {
-                int t=0;
-                 for(int i=0;i < 3;i++){
-                   for(int j=0; j < 3;j++)
-                    {
-                         jl[t].setText(jlarray[i][j].getText());
-                         t++;
-                    }
-                 }      
-   }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -302,7 +303,7 @@ public class NumberPuzeel extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel l0;
     private javax.swing.JLabel l1;
@@ -313,5 +314,7 @@ public class NumberPuzeel extends javax.swing.JFrame {
     private javax.swing.JLabel l6;
     private javax.swing.JLabel l7;
     private javax.swing.JLabel l8;
+    private javax.swing.JLabel moveCount;
+    private javax.swing.JPanel p1;
     // End of variables declaration//GEN-END:variables
 }
