@@ -7,6 +7,7 @@ package numberpuzzel;
 
 import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +26,7 @@ public class NumberPuzeel extends javax.swing.JFrame {
     int initialValue;
     int end_size_of_row_JLabel;
      boolean pl11,pl22;
+     int numberTotalValue;
     
     public NumberPuzeel() {
         initComponents();
@@ -43,6 +45,7 @@ public class NumberPuzeel extends javax.swing.JFrame {
             p2.setBounds(20,50,390,310);
           
         this.n=numberDisplyOnbox;
+        this.numberTotalValue=numberDisplyOnbox;
         this.end_size_of_row_JLabel=end_size_of_row_JLabel;
         this.initialValue=initialValueOf_I;
         this.arraySize=arraySizeOf_Jth_column;
@@ -81,6 +84,7 @@ public class NumberPuzeel extends javax.swing.JFrame {
                n--;   
            }
         }
+        
        
     }
     @SuppressWarnings("unchecked")
@@ -454,7 +458,7 @@ public class NumberPuzeel extends javax.swing.JFrame {
     {
        JLabel[][] jl={{l0,l1,l2},{l3,l4,l5},{l6,l7,l8},{l9,l10,l11,l12},{l13,l14,l15,l16},{l17,l18,l19,l20},{l21,l22,l23,l24}};
        int count=Integer.parseInt(moveCount.getText());
-        
+       
       switch(keycode)
         {
             case KeyEvent.VK_UP:
@@ -468,6 +472,7 @@ public class NumberPuzeel extends javax.swing.JFrame {
                  x--;
                  
                 }
+                checkWinningCodition();
                 break;
             case KeyEvent.VK_DOWN:
                 y=y1;
@@ -479,6 +484,7 @@ public class NumberPuzeel extends javax.swing.JFrame {
                     jl[x+1][y].setText(temp);
                     x++;
                 }
+                checkWinningCodition();
                 break;
             case KeyEvent.VK_LEFT:
                 x1=x;
@@ -490,6 +496,7 @@ public class NumberPuzeel extends javax.swing.JFrame {
                      jl[x1][y1-1].setText(temp);
                      y1--;
                  }
+                 checkWinningCodition();
                  break;
             case KeyEvent.VK_RIGHT:
                 x1=x;
@@ -501,7 +508,37 @@ public class NumberPuzeel extends javax.swing.JFrame {
                      jl[x1][y1+1].setText(temp);
                      y1++;
                  }
+                checkWinningCodition();
         }
+      
+     //         else if(numberPosition == numberTotalValue)
+                 
+    }
+    public void checkWinningCodition()
+    {
+        JLabel[][] jl={{l0,l1,l2},{l3,l4,l5},{l6,l7,l8},{l9,l10,l11,l12},{l13,l14,l15,l16},{l17,l18,l19,l20},{l21,l22,l23,l24}};
+        String numberPosition="1";
+       int numberPositionInt=1;
+       loop1: for(int i=initialValue;i < end_size_of_row_JLabel ; i++)
+       {
+           for(int j=0;j < arraySize;j++)
+          {
+              if(jl[i][j].getText().equals(numberPosition) && (numberPositionInt <= numberTotalValue))
+              {
+                  numberPositionInt=Integer.parseInt(numberPosition);
+                  numberPositionInt++;
+                  numberPosition=String.valueOf(numberPositionInt);
+              }
+              else if(jl[end_size_of_row_JLabel-1][arraySize-1].getText().equals(" ") && numberPositionInt==numberTotalValue+1)
+              {
+                  JOptionPane.showMessageDialog(null, "Congratualtion You Win");
+                  jButton1.doClick(1000);
+              }
+              else 
+              {
+                  break loop1;
+              }}
+       }
     }
     private void l19KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_l19KeyPressed
         // TODO add your handling code here:
