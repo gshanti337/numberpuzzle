@@ -5,9 +5,12 @@
  */
 package numberpuzzel;
 
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -27,13 +30,10 @@ public class NumberPuzeel extends javax.swing.JFrame {
     int end_size_of_row_JLabel;
      boolean pl11,pl22;
      int numberTotalValue;
+     JLabel lb1,lb2,lb3,lb4,lb5,lb6,lb7,lb8,lb9,lb10,lb11,lb12,lb13,lb14,lb15,lbl16,lb17,lb18,lb19,lb20,lb21,lb22,lb23,lb24,lb25;
+     JPanel PL1,PL2;
     
-    public NumberPuzeel() {
-        initComponents();
-        showNumberOnBox();
-        l8.setFocusable(true);
-        
-    }
+   
     public NumberPuzeel(boolean pl1,boolean pl2,int numberDisplyOnbox,int initialValueOf_I,int arraySizeOf_Jth_column,int end_size_of_row_JLabel)
     {
         initComponents();
@@ -60,6 +60,8 @@ public class NumberPuzeel extends javax.swing.JFrame {
     }
     public void showNumberOnBox()
     {
+        initilazationOfBoxes();
+       // lb2.setText(" xcm");
         JLabel[][] jl={{l0,l1,l2},{l3,l4,l5},{l6,l7,l8},{l9,l10,l11,l12},{l13,l14,l15,l16},{l17,l18,l19,l20},{l21,l22,l23,l24}};
         int[] number={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}; 
         int randomNumber;
@@ -86,6 +88,21 @@ public class NumberPuzeel extends javax.swing.JFrame {
         }
         
        
+    }
+    public void initilazationOfBoxes()
+    {
+         JLabel j11[][]={{lb1,lb2,lb3},{lb4,lb5,lb6},{lb7,lb8,lb9},{lb10,lb11,lb12,lb13},{lb14,lb15,lbl16,lb17},{lb18,lb19,lb20,lb21},{lb22,lb23,lb24,lb25}};
+        if(pl11)
+        {
+               
+          
+          for(int i=initialValue;i<end_size_of_row_JLabel;i++)
+            for(int j=0;j<arraySize;j++)
+            {
+                j11[i][j]=new JLabel();
+                
+            }
+        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -221,7 +238,7 @@ public class NumberPuzeel extends javax.swing.JFrame {
         );
 
         getContentPane().add(p1);
-        p1.setBounds(10, 50, 370, 292);
+        p1.setBounds(910, 100, 370, 320);
 
         jButton1.setBackground(new java.awt.Color(255, 153, 102));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -388,7 +405,7 @@ public class NumberPuzeel extends javax.swing.JFrame {
                             .addComponent(l12, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(l16, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(l20, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         p2Layout.setVerticalGroup(
             p2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,16 +461,11 @@ public class NumberPuzeel extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/second pic.JPG"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, -10, 570, 420);
+        jLabel1.setBounds(0, 0, 540, 410);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void l8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_l8KeyPressed
-             int keycode=evt.getKeyCode();
-             keypressed(keycode);
-    }//GEN-LAST:event_l8KeyPressed
     public void keypressed(int keycode)
     {
        JLabel[][] jl={{l0,l1,l2},{l3,l4,l5},{l6,l7,l8},{l9,l10,l11,l12},{l13,l14,l15,l16},{l17,l18,l19,l20},{l21,l22,l23,l24}};
@@ -582,6 +594,11 @@ public class NumberPuzeel extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void l8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_l8KeyPressed
+        int keycode=evt.getKeyCode();
+        keypressed(keycode);
+    }//GEN-LAST:event_l8KeyPressed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -609,7 +626,7 @@ public class NumberPuzeel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NumberPuzeel().setVisible(true);
+               
             }
         });
     }
